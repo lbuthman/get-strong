@@ -11,20 +11,18 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class Phase1DayA {
+public class StartingStrong {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private Integer squat;
-
-    @NotNull
     private Integer press;
-
-    @NotNull
-    private Integer deadlift;
+    private Integer benchPress;
+    private Integer deadLift;
+    private Integer powerClean;
+    private Integer pullUp;
 
     @NotNull
     private LocalDate date;
