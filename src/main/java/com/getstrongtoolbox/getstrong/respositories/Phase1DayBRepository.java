@@ -1,4 +1,7 @@
 package com.getstrongtoolbox.getstrong.respositories;
 
-public interface Phase1DayBRepository {
+import com.getstrongtoolbox.getstrong.domain.Phase1DayB;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface Phase1DayBRepository extends JpaRepository<Phase1DayB, Long> {
 }
