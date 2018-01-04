@@ -59,9 +59,8 @@ public class StartingStrongController {
      * return a status of 200 (OK)
      * or a status of 400 (BAD REQUEST) if workout cannot be found
      */
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping("/{id}")
     public void deleteWorkout(@PathVariable Long id) {
         logger.debug("REST request to delete workout id = {} from repository.", id);
         StartingStrongWorkout workoutToDelete = service.getWorkoutById(id);
