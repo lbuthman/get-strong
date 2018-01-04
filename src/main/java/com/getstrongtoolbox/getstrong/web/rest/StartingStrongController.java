@@ -44,7 +44,7 @@ public class StartingStrongController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public StartingStrongWorkout createWorkout(StartingStrongWorkout workout) {
+    public StartingStrongWorkout createWorkout(@RequestBody StartingStrongWorkout workout) {
         logger.debug("REST request to save workout {} to repository.", workout);
         if (workout.getId() != null) {
             throw new BadRequestException("A workout cannot already have an id.", ENTITY);
