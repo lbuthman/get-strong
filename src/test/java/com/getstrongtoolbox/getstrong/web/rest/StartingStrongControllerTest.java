@@ -16,15 +16,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItems;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @RunWith(SpringRunner.class)
@@ -37,7 +36,7 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
     private final static Integer DEAD_LIFT = 225;
     private final static Integer POWER_CLEAN = 135;
     private final static Integer PULL_UP = 10;
-    private final static LocalDate DATE = LocalDate.now();
+    private final static String DATE = "01-03-18";
 
     @MockBean
     private StartingStrongService service;
@@ -77,9 +76,6 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
 
     @Test
     public void getWorkouts() throws Exception {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM-dd-yyy");
-        String date = df.format(workout.getDate());
-
         //initialize repository
         repository.saveAndFlush(workout);
 
@@ -94,12 +90,28 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
                 .andExpect(jsonPath("$.[*].benchPress").value(hasItems(workout.getBenchPress())))
                 .andExpect(jsonPath("$.[*].deadLift").value(hasItems(workout.getDeadLift())))
                 .andExpect(jsonPath("$.[*].powerClean").value(hasItems(workout.getPowerClean())))
-                .andExpect(jsonPath("$.[*].pullUp").value(hasItems(workout.getPullUp())));
-//                .andExpect(jsonPath("$.[*].date").value(hasItems(date)));
+                .andExpect(jsonPath("$.[*].pullUp").value(hasItems(workout.getPullUp())))
+                .andExpect(jsonPath("$.[*].date").value(hasItems(workout.getDate())));
     }
 
     @Test
-    public void createWorkout() {
+    public void createWorkout() throws Exception {
+        int repoInitSize = repository.findAll().size();
+
+        mockMvc.perform(post("/api/v1/starting-strong")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(asJsonString(workout)))
+                .andExpect(status().isCreated());
+
+        List<StartingStrongWorkout> workouts = repository.findAll();
+        assertThat(workouts.size() == repoInitSize + 1);
+        assertThat(workouts.contains(SQUAT));
+        assertThat(workouts.contains(PRESS));
+        assertThat(workouts.contains(BENCH_PRESS));
+        assertThat(workouts.contains(DEAD_LIFT));
+        assertThat(workouts.contains(POWER_CLEAN));
+        assertThat(workouts.contains(PULL_UP));
+        assertThat(workouts.contains(DATE));
     }
 
     @Test
