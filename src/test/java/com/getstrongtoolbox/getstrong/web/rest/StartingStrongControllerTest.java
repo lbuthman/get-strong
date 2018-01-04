@@ -21,6 +21,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItems;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -115,6 +116,17 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
     }
 
     @Test
-    public void deleteWorkout() {
+    public void deleteWorkout() throws Exception {
+        //initialize repo
+        repository.saveAndFlush(workout);
+
+        int repoBeforeDeleteSize = repository.findAll().size();
+
+        when(service.getWorkoutById(workout.getId())).thenReturn(workout);
+
+        mockMvc.perform(delete("/api/v1/starting-strong/" + workout.getId()))
+                .andExpect(status().isOk());
+
+        assertThat(repository.findAll().size() < repoBeforeDeleteSize);
     }
 }
