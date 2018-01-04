@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class StartingStrong {
+public class StartingStrongWorkout {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

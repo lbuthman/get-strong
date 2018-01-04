@@ -1,6 +1,6 @@
 package com.getstrongtoolbox.getstrong.services;
 
-import com.getstrongtoolbox.getstrong.domain.StartingStrong;
+import com.getstrongtoolbox.getstrong.domain.StartingStrongWorkout;
 import com.getstrongtoolbox.getstrong.repositories.StartingStrongRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,18 +19,18 @@ public class StartingStrongServiceImpl implements StartingStrongService {
     }
 
     @Override
-    public List<StartingStrong> getWorkouts() {
+    public List<StartingStrongWorkout> getWorkouts() {
         logger.debug("Starting Strong Service to get workouts from repository.");
         return repository.findAll();
     }
 
     @Override
-    public StartingStrong getWorkoutById(Long id) {
+    public StartingStrongWorkout getWorkoutById(Long id) {
         return repository.findOne(id);
     }
 
     @Override
-    public StartingStrong createWorkout(StartingStrong workout) {
+    public StartingStrongWorkout createWorkout(StartingStrongWorkout workout) {
         logger.debug("Starting Strong Service to save workout {} to repository.", workout);
         return repository.save(workout);
     }

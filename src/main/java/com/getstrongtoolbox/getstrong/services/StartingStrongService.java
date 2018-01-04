@@ -1,16 +1,16 @@
 package com.getstrongtoolbox.getstrong.services;
 
-import com.getstrongtoolbox.getstrong.domain.StartingStrong;
+import com.getstrongtoolbox.getstrong.domain.StartingStrongWorkout;
 
 import java.util.List;
 
 public interface StartingStrongService {
 
-    List<StartingStrong> getWorkouts();
+    List<StartingStrongWorkout> getWorkouts();
 
-    StartingStrong getWorkoutById(Long id);
+    StartingStrongWorkout getWorkoutById(Long id);
 
-    StartingStrong createWorkout(StartingStrong workout);
+    StartingStrongWorkout createWorkout(StartingStrongWorkout workout);
 
     void deleteWorkout(Long id);
 

@@ -1,6 +1,6 @@
 package com.getstrongtoolbox.getstrong.web.rest;
 
-import com.getstrongtoolbox.getstrong.domain.StartingStrong;
+import com.getstrongtoolbox.getstrong.domain.StartingStrongWorkout;
 import com.getstrongtoolbox.getstrong.services.StartingStrongService;
 import com.getstrongtoolbox.getstrong.web.rest.errors.BadRequestException;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public class StartingStrongController {
      */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<StartingStrong> getWorkouts() {
+    public List<StartingStrongWorkout> getWorkouts() {
         logger.debug("REST request to get workouts from repository.");
         return service.getWorkouts();
     }
@@ -44,7 +44,7 @@ public class StartingStrongController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public StartingStrong createWorkout(StartingStrong workout) {
+    public StartingStrongWorkout createWorkout(StartingStrongWorkout workout) {
         logger.debug("REST request to save workout {} to repository.", workout);
         if (workout.getId() != null) {
             throw new BadRequestException("A workout cannot already have an id.", ENTITY);
@@ -64,7 +64,7 @@ public class StartingStrongController {
     @RequestMapping("/{id}")
     public void deleteWorkout(@PathVariable Long id) {
         logger.debug("REST request to delete workout id = {} from repository.", id);
-        StartingStrong workoutToDelete = service.getWorkoutById(id);
+        StartingStrongWorkout workoutToDelete = service.getWorkoutById(id);
         if (workoutToDelete == null) {
             throw new BadRequestException("Workout with id = " + id + " does not exist", ENTITY);
         }
