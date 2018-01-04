@@ -113,6 +113,8 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
         assertThat(workouts.contains(POWER_CLEAN));
         assertThat(workouts.contains(PULL_UP));
         assertThat(workouts.contains(DATE));
+
+        assertThat(repository.findAll().size() > repoInitSize);
     }
 
     @Test
