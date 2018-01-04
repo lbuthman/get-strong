@@ -1,5 +1,6 @@
 package com.getstrongtoolbox.getstrong.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -25,5 +26,6 @@ public class StartingStrongWorkout {
     private Integer pullUp;
 
     @NotNull
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private LocalDate date;
 }
