@@ -146,4 +146,21 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
 
         assertThat(repository.findAll().size() < repoBeforeDeleteSize);
     }
+
+    @Test
+    public void deleteNonExistingWorkout() throws Exception {
+        //initialize repo
+        repository.saveAndFlush(workout);
+
+        Long BAD_ID = 33L;
+
+        int repoSize = repository.findAll().size();
+
+        when(service.getWorkoutById(BAD_ID)).thenReturn(null);
+
+        mockMvc.perform(delete("/api/v1/starting-strong/{id}", BAD_ID))
+                .andExpect(status().isBadRequest());
+
+        assertThat(repository.findAll().size() == repoSize);
+    }
 }
