@@ -116,6 +116,21 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
     }
 
     @Test
+    public void createExistingWorkout() throws Exception {
+        //initialize repository
+        repository.saveAndFlush(workout);
+
+        int repoInitSize = repository.findAll().size();
+
+        mockMvc.perform(post("/api/v1/starting-strong")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(asJsonString(workout)))
+                .andExpect(status().isBadRequest());
+
+        assertThat(repository.findAll().size() == repoInitSize);
+    }
+
+    @Test
     public void deleteWorkout() throws Exception {
         //initialize repo
         repository.saveAndFlush(workout);
