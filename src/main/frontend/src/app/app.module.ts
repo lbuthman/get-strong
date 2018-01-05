@@ -9,6 +9,7 @@ import { StartingStrongComponent } from './program/starting-strong/starting-stro
 import { Phase1Component } from './program/starting-strong/phase1/phase1.component';
 import { Phase2Component } from './program/starting-strong/phase2/phase2.component';
 import { Phase3Component } from './program/starting-strong/phase3/phase3.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { Phase3Component } from './program/starting-strong/phase3/phase3.compone
     StartingStrongComponent,
     Phase1Component,
     Phase2Component,
-    Phase3Component
+    Phase3Component,
+    NavbarComponent
   ],
   imports: [
     BrowserModule
