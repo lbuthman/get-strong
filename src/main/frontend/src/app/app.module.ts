@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule} from "@angular/router";
 
 
 import { AppComponent } from './app.component';
@@ -24,7 +25,15 @@ import { NavbarComponent } from './navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'programs', component: ProgramComponent },
+      { path: 'programs/starting-strength', component: StartingStrongComponent },
+      { path: 'programs/starting-strength/phase1', component: Phase1Component },
+      { path: 'programs/starting-strength/phase2', component: Phase2Component },
+      { path: 'programs/starting-strength/phase3', component: Phase3Component },
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
