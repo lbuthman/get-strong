@@ -8,7 +8,7 @@ import {StartingStrengthWorkout} from "../startingStrengthWorkout";
 })
 export class Phase1Component implements OnInit {
 
-  workout: StartingStrengthWorkout = {
+  currentWorkout: StartingStrengthWorkout = {
     id: 1,
     squat: 135,
     press: 135,
@@ -18,6 +18,29 @@ export class Phase1Component implements OnInit {
     pullUp: 135,
     date: "01-01-18",
   };
+
+  workouts: StartingStrengthWorkout[] = [
+    {
+      id: 1,
+      squat: 135,
+      press: 135,
+      benchPress: 135,
+      deadLift: 135,
+      powerClean: 135,
+      pullUp: 135,
+      date: "01-01-18",
+    },
+    {
+      id: 1,
+      squat: 135,
+      press: 135,
+      benchPress: 135,
+      deadLift: 135,
+      powerClean: 135,
+      pullUp: 135,
+      date: "01-01-18",
+    },
+  ];
 
   phase: String = "phase1";
 
