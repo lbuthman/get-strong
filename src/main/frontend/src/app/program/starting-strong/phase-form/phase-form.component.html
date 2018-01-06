@@ -42,13 +42,13 @@
       <input [(ngModel)]="workout.deadLift" name="deadLift" type="number" step="5" class="form-control" id="deadLift" placeholder="135">
     </div>
   </div>
-  <div *ngIf="phase == 'phase2' || phase == 'phase3'" class="form-group row">
+  <div *ngIf="phase === 'phase2' || phase === 'phase3'" class="form-group row">
     <label for="powerClean" class="col-sm-2 col-form-label">Power Clean</label>
     <div class="col-sm-2">
       <input [(ngModel)]="workout.powerClean" name="powerClean" type="number" step="5" class="form-control" id="powerClean" placeholder="135">
     </div>
   </div>
-  <div *ngIf="phase == 'phase3'" class="form-group row">
+  <div *ngIf="phase === 'phase3'" class="form-group row">
     <label for="pullUp" class="col-sm-2 col-form-label">Pull Up</label>
     <div class="col-sm-2">
       <input [(ngModel)]="workout.pullUp" name="pullUp" type="number" step="1" class="form-control" id="pullUp" placeholder="5">
