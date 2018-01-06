@@ -12,6 +12,8 @@ export class PhaseFormComponent implements OnInit {
 
   @Input() phase: string = "phase3";
 
+  selectedWorkout: string = "A";
+
   constructor() { }
 
   ngOnInit() {
