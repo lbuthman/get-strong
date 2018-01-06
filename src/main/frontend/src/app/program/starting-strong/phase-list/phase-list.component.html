@@ -1,3 +1,33 @@
-<p>
-  phase-list works!
-</p>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Squat</th>
+    <th scope="col">Press</th>
+    <th scope="col">Bench Press</th>
+    <th scope="col">Dead Lift</th>
+    <th scope="col" *ngIf="phase === 'phase2' || phase === 'phase3'">Power Clean</th>
+    <th scope="col" *ngIf="phase === 'phase3'">Pull Up</th>
+    <th scope="col">Date</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row">1</th>
+    <td>135</td>
+    <td>135</td>
+    <td>135</td>
+    <td>135</td>
+    <td *ngIf="phase === 'phase2' || phase === 'phase3'">135</td>
+    <td *ngIf="phase === 'phase3'">3</td>
+    <td>01-01-18</td>
+    <td>
+      <p data-placement="top">
+        <button class="btn btn-primary">Edit</button>
+        <button class="btn btn-danger">Delete</button>
+      </p>
+    </td>
+  </tr>
+  </tbody>
+</table>
