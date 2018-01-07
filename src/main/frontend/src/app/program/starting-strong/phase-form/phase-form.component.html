@@ -50,7 +50,7 @@
     <label for="benchPress" class="col-sm-2 col-form-label">Bench Press</label>
     <div class="col-sm-2">
       <input [(ngModel)]="workout.benchPress"
-             name="benchPress" type="number" class="form-control" id="benchPress" placeholder="45"
+             name="benchPress" type="number" step="5" class="form-control" id="benchPress" placeholder="45"
              [disabled]="selectedWorkout === 'A'
                 || selectedWorkout === 'C'">
     </div>
