@@ -8,6 +8,8 @@ public interface StartingStrongService {
 
     List<StartingStrongWorkout> getWorkouts();
 
+    StartingStrongWorkout getMostRecentWorkout();
+
     StartingStrongWorkout getWorkoutById(Long id);
 
     StartingStrongWorkout createWorkout(StartingStrongWorkout workout);

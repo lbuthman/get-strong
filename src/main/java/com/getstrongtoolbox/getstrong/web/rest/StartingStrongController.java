@@ -35,6 +35,13 @@ public class StartingStrongController {
         return service.getWorkouts();
     }
 
+    @GetMapping("/most-recent")
+    @ResponseStatus(HttpStatus.OK)
+    public StartingStrongWorkout getMostRecentWorkout() {
+        logger.debug("REST request to get most recent workout from repository.");
+        return service.getMostRecentWorkout();
+    }
+
     /**
      * POST /api/v1/starting-strong
      *

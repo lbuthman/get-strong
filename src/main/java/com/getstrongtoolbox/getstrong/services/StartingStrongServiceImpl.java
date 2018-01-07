@@ -25,6 +25,11 @@ public class StartingStrongServiceImpl implements StartingStrongService {
     }
 
     @Override
+    public StartingStrongWorkout getMostRecentWorkout() {
+        return repository.findAllByOrderByIdDesc().get(0);
+    }
+
+    @Override
     public StartingStrongWorkout getWorkoutById(Long id) {
         return repository.findOne(id);
     }
