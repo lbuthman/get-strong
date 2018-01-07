@@ -17,12 +17,24 @@ export class PhaseListComponent implements OnInit {
 
   ngOnInit() {
     this.getWorkouts();
+
+    this.service.onWorkoutAdded.subscribe(
+      (workout: StartingStrengthWorkout) => this.workouts.unshift(workout)
+    );
   }
 
   getWorkouts(): void {
     this.service.getWorkouts()
       .subscribe(workouts => this.workouts = workouts,
         (error) => console.log(error),
+      );
+  }
+
+  onClickDelete(id: number): void {
+    this.service.deleteWorkout(id)
+      .subscribe(() => {
+          this.workouts.splice(id, 1);
+        }
       );
   }
 
