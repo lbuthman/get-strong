@@ -78,9 +78,9 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
     @Test
     public void getWorkouts() throws Exception {
         //initialize repository
-        repository.saveAndFlush(workout);
+        repository.save(workout);
 
-        when(service.getWorkouts()).thenReturn(repository.findAll());
+        when(service.getWorkouts()).thenReturn(repository.findAllByOrderByIdDesc());
 
         mockMvc.perform(get("/api/v1/starting-strong"))
                 .andExpect(status().isOk())
@@ -97,14 +97,14 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
 
     @Test
     public void createWorkout() throws Exception {
-        int repoInitSize = repository.findAll().size();
+        int repoInitSize = repository.findAllByOrderByIdDesc().size();
 
         mockMvc.perform(post("/api/v1/starting-strong")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(asJsonString(workout)))
                 .andExpect(status().isCreated());
 
-        List<StartingStrongWorkout> workouts = repository.findAll();
+        List<StartingStrongWorkout> workouts = repository.findAllByOrderByIdDesc();
         assertThat(workouts.size() == repoInitSize + 1);
         assertThat(workouts.contains(SQUAT));
         assertThat(workouts.contains(PRESS));
@@ -114,53 +114,53 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
         assertThat(workouts.contains(PULL_UP));
         assertThat(workouts.contains(DATE));
 
-        assertThat(repository.findAll().size() > repoInitSize);
+        assertThat(repository.findAllByOrderByIdDesc().size() > repoInitSize);
     }
 
     @Test
     public void createExistingWorkout() throws Exception {
         //initialize repository
-        repository.saveAndFlush(workout);
+        repository.save(workout);
 
-        int repoInitSize = repository.findAll().size();
+        int repoInitSize = repository.findAllByOrderByIdDesc().size();
 
         mockMvc.perform(post("/api/v1/starting-strong")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(asJsonString(workout)))
                 .andExpect(status().isBadRequest());
 
-        assertThat(repository.findAll().size() == repoInitSize);
+        assertThat(repository.findAllByOrderByIdDesc().size() == repoInitSize);
     }
 
     @Test
     public void deleteWorkout() throws Exception {
         //initialize repo
-        repository.saveAndFlush(workout);
+        repository.save(workout);
 
-        int repoBeforeDeleteSize = repository.findAll().size();
+        int repoBeforeDeleteSize = repository.findAllByOrderByIdDesc().size();
 
         when(service.getWorkoutById(workout.getId())).thenReturn(workout);
 
         mockMvc.perform(delete("/api/v1/starting-strong/" + workout.getId()))
                 .andExpect(status().isOk());
 
-        assertThat(repository.findAll().size() < repoBeforeDeleteSize);
+        assertThat(repository.findAllByOrderByIdDesc().size() < repoBeforeDeleteSize);
     }
 
     @Test
     public void deleteNonExistingWorkout() throws Exception {
         //initialize repo
-        repository.saveAndFlush(workout);
+        repository.save(workout);
 
         Long BAD_ID = 33L;
 
-        int repoSize = repository.findAll().size();
+        int repoSize = repository.findAllByOrderByIdDesc().size();
 
         when(service.getWorkoutById(BAD_ID)).thenReturn(null);
 
         mockMvc.perform(delete("/api/v1/starting-strong/{id}", BAD_ID))
                 .andExpect(status().isBadRequest());
 
-        assertThat(repository.findAll().size() == repoSize);
+        assertThat(repository.findAllByOrderByIdDesc().size() == repoSize);
     }
 }
