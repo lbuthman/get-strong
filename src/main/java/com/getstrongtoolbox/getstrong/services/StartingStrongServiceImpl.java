@@ -21,7 +21,7 @@ public class StartingStrongServiceImpl implements StartingStrongService {
     @Override
     public List<StartingStrongWorkout> getWorkouts() {
         logger.debug("Starting Strong Service to get workouts from repository.");
-        return repository.findAll();
+        return repository.findAllByOrderByIdDesc();
     }
 
     @Override
