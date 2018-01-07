@@ -96,6 +96,24 @@ public class StartingStrongControllerTest extends AbstractRestControllerTest {
     }
 
     @Test
+    public void getMostRecentWorkout() throws Exception {
+        final int TEST_DATA_SIZE = 4;
+        //initialize repository
+        repository.save(workout);
+        StartingStrongWorkout newWorkout = new StartingStrongWorkout();
+        repository.save(newWorkout);
+
+        int repoSize = repository.findAllByOrderByIdDesc().size() + TEST_DATA_SIZE;
+
+        when(service.getMostRecentWorkout()).thenReturn(newWorkout);
+
+        mockMvc.perform(get("/api/v1/starting-strong/most-recent"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id").value(repoSize));
+    }
+
+    @Test
     public void createWorkout() throws Exception {
         int repoInitSize = repository.findAllByOrderByIdDesc().size();
 
