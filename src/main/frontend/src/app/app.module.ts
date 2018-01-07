@@ -15,6 +15,7 @@ import { Phase3Component } from './program/starting-strong/phase3/phase3.compone
 import { NavbarComponent } from './navbar/navbar.component';
 import { PhaseFormComponent } from './program/starting-strong/phase-form/phase-form.component';
 import { PhaseListComponent } from './program/starting-strong/phase-list/phase-list.component';
+import {StartingStrongService} from "./services/starting-strong.service";
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { PhaseListComponent } from './program/starting-strong/phase-list/phase-l
       { path: 'programs/starting-strength/phase3', component: Phase3Component },
     ])
   ],
-  providers: [],
+  providers: [StartingStrongService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
