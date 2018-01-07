@@ -17,7 +17,7 @@ export class PhaseFormComponent implements OnInit {
     deadLift: 0,
     powerClean: 0,
     pullUp: 0,
-    date: new Date().getDate().toString(),
+    date: null,
   };
 
   @Input() phase: string = "phase3";
@@ -37,9 +37,14 @@ export class PhaseFormComponent implements OnInit {
     );
   }
 
-  onClickSave() {
+  onClickSave(): void {
     this.workout.id = null;
-    console.log(this.workout);
+    this.workout.date = new Date().toDateString();
+    this.service.addWorkout(this.workout).subscribe(
+      (workout: StartingStrengthWorkout) => {
+        this.service.onWorkoutAdded.emit(workout)
+      }
+    );
   }
 
 }
