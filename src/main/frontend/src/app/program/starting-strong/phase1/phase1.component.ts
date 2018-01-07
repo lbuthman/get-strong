@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {StartingStrengthWorkout} from "../startingStrengthWorkout";
 import {StartingStrongService} from "../../../services/starting-strong.service";
 
@@ -20,21 +20,11 @@ export class Phase1Component implements OnInit {
     date: "01-01-18",
   };
 
-  workouts: StartingStrengthWorkout[];
-
   phase: String = "phase1";
 
-  constructor(private service: StartingStrongService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getWorkouts();
-  }
 
-  getWorkouts(): void {
-    this.service.getWorkouts()
-      .subscribe(workouts => this.workouts = workouts,
-        (error) => console.log(error)
-      );
   }
-
 }
