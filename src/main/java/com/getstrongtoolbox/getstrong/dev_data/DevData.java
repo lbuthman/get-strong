@@ -33,7 +33,7 @@ public class DevData implements ApplicationListener<ContextRefreshedEvent> {
         workout1.setDeadLift(95);
         workout1.setPowerClean(95);
         workout1.setPullUp(1);
-        workout1.setDate("01-01-18");
+        workout1.setDate("Thu Jan 04 2018");
         workouts.add(workout1);
 
         StartingStrongWorkout workout2 = new StartingStrongWorkout();
@@ -43,7 +43,7 @@ public class DevData implements ApplicationListener<ContextRefreshedEvent> {
         workout2.setDeadLift(115);
         workout2.setPowerClean(115);
         workout2.setPullUp(2);
-        workout2.setDate("01-02-18");
+        workout2.setDate("Fri Jan 05 2018");
         workouts.add(workout2);
 
         StartingStrongWorkout workout3 = new StartingStrongWorkout();
@@ -53,7 +53,7 @@ public class DevData implements ApplicationListener<ContextRefreshedEvent> {
         workout3.setDeadLift(135);
         workout3.setPowerClean(135);
         workout3.setPullUp(3);
-        workout3.setDate("01-03-18");
+        workout3.setDate("Sat Jan 06 2018");
         workouts.add(workout3);
 
         StartingStrongWorkout workout4 = new StartingStrongWorkout();
@@ -63,7 +63,7 @@ public class DevData implements ApplicationListener<ContextRefreshedEvent> {
         workout4.setDeadLift(155);
         workout4.setPowerClean(155);
         workout4.setPullUp(4);
-        workout4.setDate("01-04-18");
+        workout4.setDate("Sun Jan 07 2018");
         workouts.add(workout4);
 
         return workouts;
