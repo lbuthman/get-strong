@@ -13,4 +13,7 @@ export class StartingStrongService {
     return this.http.get(this.url);
   }
 
+  getMostRecentWorkout(): Observable<any> {
+    return this.http.get(this.url + "/most-recent");
+  }
 }
