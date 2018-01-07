@@ -19,4 +19,8 @@ export class PhaseFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClickSave() {
+    console.log(this.workout);
+  }
+
 }
