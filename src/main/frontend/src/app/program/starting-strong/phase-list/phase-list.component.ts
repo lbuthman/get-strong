@@ -30,10 +30,12 @@ export class PhaseListComponent implements OnInit {
       );
   }
 
-  onClickDelete(id: number): void {
-    this.service.deleteWorkout(id)
+  onClickDelete(workout: StartingStrengthWorkout): void {
+
+    this.service.deleteWorkout(workout.id)
       .subscribe(() => {
-          this.workouts.splice(id, 1);
+          let index = this.workouts.indexOf(workout);
+          this.workouts.splice(index, 1);
         }
       );
   }
