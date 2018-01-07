@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule} from "@angular/router";
 import { NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule} from "@angular/forms";
-import { HttpClient} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -34,7 +34,7 @@ import {StartingStrongService} from "./services/starting-strong.service";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClient,
+    HttpClientModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
