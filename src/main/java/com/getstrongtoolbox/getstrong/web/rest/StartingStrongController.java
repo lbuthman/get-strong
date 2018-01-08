@@ -34,6 +34,11 @@ public class StartingStrongController {
         return service.getWorkouts();
     }
 
+    /**
+     * GET /api/v1/starting-strong/most-recent
+     *
+     * @return a status of 200 (OK) and the most recent workout added to database
+     */
     @GetMapping("/most-recent")
     @ResponseStatus(HttpStatus.OK)
     public StartingStrongWorkout getMostRecentWorkout() {
