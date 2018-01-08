@@ -58,6 +58,7 @@ public class StartingStrongController {
     public StartingStrongWorkout createWorkout(@RequestBody StartingStrongWorkout workout) {
         log.info("REST request to save workout {} to repository.", workout);
         if (workout.getId() != null) {
+            log.error("Workout already exists: {}", workout);
             throw new BadRequestException("A workout cannot already have an id.", ENTITY);
         }
         return service.createWorkout(workout);
@@ -76,6 +77,7 @@ public class StartingStrongController {
         log.info("REST request to delete workout id = {} from repository.", id);
         StartingStrongWorkout workoutToDelete = service.getWorkoutById(id);
         if (workoutToDelete == null) {
+            log.error("Workout with id {} does not exist", id);
             throw new BadRequestException("Workout with id = " + id + " does not exist", ENTITY);
         }
         service.deleteWorkout(id);
