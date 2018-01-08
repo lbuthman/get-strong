@@ -30,7 +30,7 @@ public class StartingStrongController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<StartingStrongWorkout> getWorkouts() {
-        log.debug("REST request to get workouts from repository.");
+        log.info("REST request to get workouts from repository.");
         return service.getWorkouts();
     }
 
@@ -42,7 +42,7 @@ public class StartingStrongController {
     @GetMapping("/most-recent")
     @ResponseStatus(HttpStatus.OK)
     public StartingStrongWorkout getMostRecentWorkout() {
-        log.debug("REST request to get most recent workout from repository.");
+        log.info("REST request to get most recent workout from repository.");
         return service.getMostRecentWorkout();
     }
 
@@ -56,7 +56,7 @@ public class StartingStrongController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public StartingStrongWorkout createWorkout(@RequestBody StartingStrongWorkout workout) {
-        log.debug("REST request to save workout {} to repository.", workout);
+        log.info("REST request to save workout {} to repository.", workout);
         if (workout.getId() != null) {
             throw new BadRequestException("A workout cannot already have an id.", ENTITY);
         }
@@ -73,7 +73,7 @@ public class StartingStrongController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteWorkout(@PathVariable Long id) {
-        log.debug("REST request to delete workout id = {} from repository.", id);
+        log.info("REST request to delete workout id = {} from repository.", id);
         StartingStrongWorkout workoutToDelete = service.getWorkoutById(id);
         if (workoutToDelete == null) {
             throw new BadRequestException("Workout with id = " + id + " does not exist", ENTITY);
