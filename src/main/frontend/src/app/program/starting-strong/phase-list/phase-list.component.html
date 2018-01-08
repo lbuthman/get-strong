@@ -25,7 +25,7 @@
     <td>{{ workout.date }}</td>
     <td>
       <p>
-        <button class="btn btn-primary">Edit</button>
+        <button class="btn btn-primary" (click)="onClickEdit(workout)">Edit</button>
         <button class="btn btn-danger" (click)="onClickDelete(workout)">Delete</button>
       </p>
     </td>

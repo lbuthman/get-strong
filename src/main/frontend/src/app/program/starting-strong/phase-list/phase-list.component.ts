@@ -30,6 +30,11 @@ export class PhaseListComponent implements OnInit {
       );
   }
 
+  //TODO: either use existing form or create inline form on click
+  onClickEdit(workout: StartingStrengthWorkout) {
+    console.log("TODO as future enhancement");
+  }
+
   onClickDelete(workout: StartingStrengthWorkout): void {
 
     this.service.deleteWorkout(workout.id)
