@@ -3,20 +3,19 @@ package com.getstrongtoolbox.getstrong.web.rest;
 import com.getstrongtoolbox.getstrong.domain.StartingStrongWorkout;
 import com.getstrongtoolbox.getstrong.services.StartingStrongService;
 import com.getstrongtoolbox.getstrong.web.rest.errors.BadRequestException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Slf4j
 @RequestMapping("/api/v1/starting-strong")
 public class StartingStrongController {
 
     private final static String ENTITY = "StartingStrong";
 
-    private final Logger logger = LoggerFactory.getLogger(StartingStrongController.class);
     private final StartingStrongService service;
 
     public StartingStrongController(StartingStrongService service) {
@@ -31,14 +30,14 @@ public class StartingStrongController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<StartingStrongWorkout> getWorkouts() {
-        logger.debug("REST request to get workouts from repository.");
+        log.debug("REST request to get workouts from repository.");
         return service.getWorkouts();
     }
 
     @GetMapping("/most-recent")
     @ResponseStatus(HttpStatus.OK)
     public StartingStrongWorkout getMostRecentWorkout() {
-        logger.debug("REST request to get most recent workout from repository.");
+        log.debug("REST request to get most recent workout from repository.");
         return service.getMostRecentWorkout();
     }
 
@@ -52,7 +51,7 @@ public class StartingStrongController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public StartingStrongWorkout createWorkout(@RequestBody StartingStrongWorkout workout) {
-        logger.debug("REST request to save workout {} to repository.", workout);
+        log.debug("REST request to save workout {} to repository.", workout);
         if (workout.getId() != null) {
             throw new BadRequestException("A workout cannot already have an id.", ENTITY);
         }
@@ -69,7 +68,7 @@ public class StartingStrongController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteWorkout(@PathVariable Long id) {
-        logger.debug("REST request to delete workout id = {} from repository.", id);
+        log.debug("REST request to delete workout id = {} from repository.", id);
         StartingStrongWorkout workoutToDelete = service.getWorkoutById(id);
         if (workoutToDelete == null) {
             throw new BadRequestException("Workout with id = " + id + " does not exist", ENTITY);
